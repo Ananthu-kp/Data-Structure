@@ -60,6 +60,26 @@ class linkedlist{
         }
     }
 
+    remove(index){
+        if(index < 0 || index >= this.size){
+            return null
+        }
+        let removenode
+        if(index===0){
+            removenode=this.head
+            this.head=removenode.next
+        }else{
+            let previous=this.head
+            for(let i=0; i<index-1; i++){
+                previous=previous.next
+            }
+            removenode=previous.next
+            previous.next=removenode.next
+        }
+        this.size--
+        return removenode.data
+    }
+
     display(){
         if(this.isEmpty()){
             console.log("list is Empty");
@@ -95,5 +115,6 @@ list.add(10)
 list.add(20)
 list.add(30)
 list.insert(11,1)
-list.reverse()
+// list.reverse()
+list.remove(1)
 list.display()
