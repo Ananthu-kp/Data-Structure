@@ -1,4 +1,4 @@
-//linkedlist
+//linked list
 
 class Node{
     constructor(data){
@@ -17,8 +17,8 @@ class linkedlist{
         return this.size==0
     }
 
-    append(data){
-        let node=new Node(data)
+    add(data){
+        const node=new Node(data)
         if(this.isEmpty()){
             this.head=node
         }else{
@@ -42,22 +42,58 @@ class linkedlist{
         this.size++
     }
 
+    insert(data,index){
+        if(index <= 0 || index > this.size){
+            return
+        }
+        if(index===0){
+            this.prepend(data)
+        }else{
+            const node=new Node(data)
+            let previous=this.head
+            for(let i=0; i< index-1; i++){
+                previous=previous.next
+            }
+            node.next=previous.next
+            previous.next=node
+            this.size++
+        }
+    }
+
     display(){
         if(this.isEmpty()){
             console.log("list is Empty");
         }else{
             let current=this.head
-            while(current!=null){
-                console.log(current.data);
+            let lists=''
+            while(current){
+                // console.log(current.data);
+                lists += `${current.data} `
                 current=current.next
             }
+            console.log(lists);
         }
     }
+
+    reverse(){
+        let current=this.head
+        let previous=null
+        while(current){
+           let next=current.next
+           current.next=previous
+           previous=current
+           current=next
+        }
+            this.head=previous
+    }
+
 }
 
-const list =new linkedlist()
+const list=new linkedlist()
 
-list.prepend(10)
-list.prepend(20)
-
+list.add(10)
+list.add(20)
+list.add(30)
+list.insert(11,1)
+list.reverse()
 list.display()
