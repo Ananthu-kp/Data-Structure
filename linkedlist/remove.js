@@ -37,24 +37,44 @@ class linkedlist{
         }
     }
 
+
     remove(index){
-        if(index < 0 || index >this.size){
+        if(index < 0 || index > this.size){
             return
         }
-        let removenode;
+        let removeNode;
         if(index==0){
-            removenode=this.head
-            this.head=removenode.next
+            removeNode=this.head
+            this.head=removeNode.next
         }else{
             let previous=this.head
-            for(let i=0; i<index-1;i++){
+            for(let i=0; i< index-1; i++){
                 previous=previous.next
             }
-            removenode=previous.next
-            previous.next=removenode.next
+            removeNode=previous.next
+            previous.next=removeNode.next
         }
         this.size--
-        return removenode.data
+        return removeNode.data
+    }
+
+    removeData(data){
+        let current=this.head
+        let previous=null
+        while(current!=null){
+            if(current.data==data){
+                if(previous==null){
+                    this.head=current.next
+                }else{
+                    previous.next=current.next
+                }
+                this.size--
+                return current.data
+            }
+            previous=current
+            current=current.next
+        }
+        return null
     }
 }
 
@@ -63,4 +83,5 @@ const list = new linkedlist()
 list.append(11)
 list.append(22)
 list.remove(0)
+list.removeData(22)
 list.display()

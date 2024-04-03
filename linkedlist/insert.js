@@ -41,13 +41,13 @@ class linkedlist{
     }
 
     insert(data,index){
-        if(index < 0 || index > this.size){
+        if(index < 0 || index >this.size){
             return
         }
         if(index===0){
             this.prepend(data)
         }else{
-            let node = new Node(data)
+            const node =new Node(data)
             let previous=this.head
             for(let i=0;i<index-1;i++){
                 previous=previous.next
