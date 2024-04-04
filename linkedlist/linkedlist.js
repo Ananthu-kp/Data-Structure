@@ -80,6 +80,25 @@ class linkedlist{
         return removenode.data
     }
 
+    removeData(data){
+        let current=this.head
+        let previous=null
+        while(current!=null){
+            if(current.data==data){
+                if(previous==null){
+                    this.head=current.next
+                }else{
+                    previous.next=current.next
+                }
+                this.size--
+                return current.data
+            }
+            previous=current
+            current=current.next
+        }
+        return null
+    }
+
     display(){
         if(this.isEmpty()){
             console.log("list is Empty");
@@ -117,4 +136,5 @@ list.add(30)
 list.insert(11,1)
 // list.reverse()
 list.remove(1)
+list.removeData(10)
 list.display()
