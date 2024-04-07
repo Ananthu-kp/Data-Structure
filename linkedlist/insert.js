@@ -41,20 +41,20 @@ class linkedlist{
     }
 
     insert(data,index){
-        if(index < 0 || index >this.size){
-            return
+        if(index < 0 || index > this.size){
+            return 
         }
-        if(index===0){
+        if(index==0){
             this.prepend(data)
         }else{
-            const node =new Node(data)
+            let node=new Node(data)
             let previous=this.head
-            for(let i=0;i<index-1;i++){
+            for(let i=0; i< index-1; i++){
                 previous=previous.next
             }
             node.next=previous.next
             previous.next=node
-            this.size++
+            this.size++  
         }
     }
 
@@ -72,9 +72,9 @@ class linkedlist{
 }
 
 const list=new linkedlist()
-list.prepend(10)
-list.prepend(20)
-list.insert(30,0)
-list.insert(50,1)
+list.add(10)
+list.add(20)
+list.insert(30,2)
+list.insert(50,0)
 
 list.display()
