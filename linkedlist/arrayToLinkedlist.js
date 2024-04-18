@@ -1,56 +1,55 @@
-class Node{
-    constructor(data){
-        this.data=data
-        this.next=null
+class Node {
+    constructor(data) {
+        this.data = data
+        this.next = null
     }
 }
 
-class linkedlist{
-    constructor(){
-        this.head=null
-        this.size=0
+class LinkedList {
+    constructor() {
+        this.head = null
+        this.size = 0
     }
 
-    empty(){
-        return this.size==0
+    empty() {
+        return this.size == 0
     }
 
-    append(data){
-        let node= new Node(data)
-        if(this.empty()){
-            this.head=node
-        }else{
-            let current=this.head
-            while(current.next){
-                current=current.next
+    append(data) {
+        let node = new Node(data)
+        if (!this.head) {
+            this.head = node
+        } else {
+            let current = this.head 
+            while (current.next) {
+                current = current.next
             }
-            current.next=node
+            current.next = node
         }
         this.size++
     }
 
-    display(){
-        if(this.empty()){
+    display() {
+        if (!this.head) {
             console.log("list is Empty");
-        }else{
-            let current=this.head
-            while(current!=null){
+        } else {
+            let current = this.head
+            while (current) {
                 console.log(current.data);
-                current=current.next
+                current = current.next
             }
         }
     }
 }
 
-const arr=[12,22,33,44,55]
+const array = [1, 2, 3, 4, 5];
 
-function arrayToLinkedList(arr){
-    let list = new linkedlist()
-    for(let item of arr){
-        list.append(item)
+function arrayToList(array) {
+    let list = new LinkedList()
+    for (const items of array) {
+        list.append(items)
     }
     return list
 }
-
-const list=arrayToLinkedList(arr)
+const list = arrayToList(array)
 list.display()
