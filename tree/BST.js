@@ -39,6 +39,29 @@ class BinarySearchTree {
             }
         }
     }
+
+    search(root, data) {
+        if (!root) {
+            return false
+        } else {
+            if (root.data === data) {
+                return true
+            } else if (data < root.data) {
+                return this.search(root.left, data)
+            } else {
+                return this.search(root.right, data)
+            }
+        }
+    }
 }
 
 const bst = new BinarySearchTree()
+
+bst.insert(10)
+bst.insert(11)
+bst.insert(12)
+
+console.log(bst.search(bst.root, 10));
+console.log(bst.search(bst.root, 11));
+console.log(bst.search(bst.root, 12));
+console.log(bst.search(bst.root, 20));
