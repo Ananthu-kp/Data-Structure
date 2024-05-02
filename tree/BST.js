@@ -93,7 +93,7 @@ class BinarySearchTree {
         }
     }
 
-    minimum(root){
+    minimum(root) {
         if (!root.left) {
             return root.data
         } else {
@@ -139,6 +139,16 @@ class BinarySearchTree {
         }
         return root
     }
+
+    isBST() {
+        let arr = []
+        this.inOrder(this.root, arr)
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] < arr[i - 1]) return false
+        }
+        return true
+    }
+
 }
 
 const bst = new BinarySearchTree()
@@ -162,10 +172,11 @@ console.log("------");
 bst.postOrder(bst.root)
 console.log("------");
 bst.levelOrder()
-console.log("------");
 
-console.log("minimum value =",bst.minimum(bst.root));
-console.log("maximum value =",bst.maximum(bst.root));
+console.log("minimum value =", bst.minimum(bst.root));
+console.log("maximum value =", bst.maximum(bst.root));
 
 bst.delete(3)
 bst.levelOrder()
+console.log("------");
+console.log(bst.isBST());
