@@ -149,6 +149,32 @@ class BinarySearchTree {
         return true
     }
 
+    minHeight(root = this.root) {
+        if (!root) {
+            return -1
+        }
+        let left = this.minHeight(root.left)
+        let right = this.minHeight(root.right)
+        if (left < right) {
+            return left + 1
+        } else {
+            return right + 1
+        }
+    }
+
+    maxHeight(root = this.root) {
+        if (!root) {
+            return -1
+        }
+        let left = this.maxHeight(root.left)
+        let right = this.maxHeight(root.right)
+        if (left > right) {
+            return left + 1
+        }else{
+            return right + 1
+        }
+    }
+
 }
 
 const bst = new BinarySearchTree()
@@ -178,5 +204,8 @@ console.log("maximum value =", bst.maximum(bst.root));
 
 bst.delete(3)
 bst.levelOrder()
-console.log("------");
-console.log(bst.isBST());
+// console.log("------");
+// console.log(bst.isBST());
+
+console.log("minHeight =",bst.minHeight());
+console.log("maxHeight =",bst.maxHeight());
