@@ -155,11 +155,7 @@ class BinarySearchTree {
         }
         let left = this.minHeight(root.left)
         let right = this.minHeight(root.right)
-        if (left < right) {
-            return left + 1
-        } else {
-            return right + 1
-        }
+        return Math.min(left, right) + 1
     }
 
     maxHeight(root = this.root) {
@@ -168,11 +164,37 @@ class BinarySearchTree {
         }
         let left = this.maxHeight(root.left)
         let right = this.maxHeight(root.right)
-        if (left > right) {
-            return left + 1
-        }else{
-            return right + 1
+        return Math.max(left, right) + 1
+    }
+
+    isBalanced() {
+        return (this.maxHeight(this.root) - this.minHeight(this.root)) <= 1
+    }
+
+    oddNodeSum(root) {
+        if (!root) {
+            return 0
         }
+        let sum = 0;
+        if (root.data % 2 !== 0) {
+            sum += root.data
+        }
+        sum += this.oddNodeSum(root.left)
+        sum += this.oddNodeSum(root.right)
+        return sum
+    }
+
+    evenNodeSum(root) {
+        if (!root) {
+            return 0
+        }
+        let sum = 0;
+        if (root.data % 2 === 0) {
+            sum += root.data
+        }
+        sum += this.evenNodeSum(root.left)
+        sum += this.evenNodeSum(root.right)
+        return sum
     }
 
 }
@@ -202,10 +224,15 @@ bst.levelOrder()
 console.log("minimum value =", bst.minimum(bst.root));
 console.log("maximum value =", bst.maximum(bst.root));
 
-bst.delete(3)
-bst.levelOrder()
+// bst.delete(3)
+// bst.levelOrder()
 // console.log("------");
 // console.log(bst.isBST());
 
-console.log("minHeight =",bst.minHeight());
-console.log("maxHeight =",bst.maxHeight());
+console.log("minHeight =", bst.minHeight());
+console.log("maxHeight =", bst.maxHeight());
+
+console.log("Is BST balanced?", bst.isBalanced());
+
+console.log("oddNodeSum =",bst.oddNodeSum(bst.root));
+console.log("evenNodeSum =",bst.evenNodeSum(bst.root));
