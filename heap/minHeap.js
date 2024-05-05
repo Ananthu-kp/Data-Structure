@@ -9,7 +9,15 @@ class MinHeap {
     }
 
     hasParent(index) {
-        return this.Parent(index) >= 0 
+        return this.Parent(index) >= 0
+    }
+
+    leftChild(index) {
+        return 2 * index + 1
+    }
+
+    rightChild(index) {
+        return 2 * index + 2
     }
 
     swap(i1, i2) {
@@ -33,6 +41,29 @@ class MinHeap {
     display() {
         console.log(this.heap);
     }
+
+    delete() {
+        this.heap[0] = this.heap[this.size - 1]
+        this.heap.pop()
+        this.size--
+        this.heapifyDown(0)
+    }
+
+    heapifyDown(index) {
+        let small = index
+        let left = this.leftChild(index)
+        let right = this.rightChild(index)
+        if (left < this.size && this.heap[left] < this.heap[small]) {
+            small = left
+        }
+        if (right < this.size && this.heap[right] < this.heap[small]) {
+            small = right
+        }
+        if (small !== index) {
+            this.swap(index, small)
+            this.heapifyDown(small)
+        }
+    }
 }
 
 const heap = new MinHeap()
@@ -42,4 +73,6 @@ heap.insert(20)
 heap.insert(10)
 heap.insert(8)
 heap.insert(5)
+heap.display()
+heap.delete()
 heap.display()
