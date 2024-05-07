@@ -56,6 +56,44 @@ class Graph {
         }
         return false
     }
+
+    dfs(startVertex) {
+        const visited = {}
+        const stack = []
+        stack.push(startVertex)
+        visited[startVertex] = true
+
+        while (stack.length) {
+            const curr = stack.pop()
+            console.log(curr);
+
+            this.adjacencyList[curr].forEach(next => {
+                if (!visited[next]) {
+                    visited[next] = true
+                    stack.push(next)
+                }
+            })
+        }
+    }
+
+    bfs(startVertex) {
+        const visited = {}
+        const queue = []
+        queue.push(startVertex)
+        visited[startVertex] = true
+
+        while (queue.length) {
+            const curr = queue.shift()
+            console.log(curr);
+
+            for (const next of this.adjacencyList[curr]) {
+                if (!visited[next]) {
+                    visited[next] = true
+                    queue.push(next)
+                }
+            }
+        }
+    }
 }
 
 const graph = new Graph()
@@ -73,7 +111,11 @@ graph.display()
 console.log(graph.hasEdges('A','B'));
 
 // graph.removeEdge('A','C')
-graph.removeVertex('B')
-graph.display()
+// graph.removeVertex('B')
+// graph.display()
 
 console.log("Cyclic ->",graph.hasCyclic());
+
+graph.dfs('A')
+console.log("----");
+graph.bfs('A')
