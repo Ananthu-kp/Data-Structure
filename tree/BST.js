@@ -142,7 +142,7 @@ class BinarySearchTree {
 
     isBST() {
         let arr = []
-        this.inOrder(this.root, arr) 
+        this.inOrder(this.root, arr)
         for (let i = 1; i < arr.length; i++) {
             if (arr[i] < arr[i - 1]) return false
         }
@@ -168,7 +168,7 @@ class BinarySearchTree {
     }
 
     isBalanced() {
-        return (this.maxHeight(this.root) - this.minHeight(this.root)) <= 1
+        return (this.minHeight(this.root) - this.maxHeight(this.root))
     }
 
     oddNodeSum(root) {
@@ -259,7 +259,7 @@ console.log("maxHeight =", bst.maxHeight());
 
 console.log("Is BST balanced?", bst.isBalanced());
 
-console.log("oddNodeSum =",bst.oddNodeSum(bst.root));
-console.log("evenNodeSum =",bst.evenNodeSum(bst.root));
+console.log("oddNodeSum =", bst.oddNodeSum(bst.root));
+console.log("evenNodeSum =", bst.evenNodeSum(bst.root));
 
 console.log("Closest value :", bst.findClostest(1));
