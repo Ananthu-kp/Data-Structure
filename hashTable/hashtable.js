@@ -20,7 +20,7 @@ class HashTable {
         let bucket = [key, value]
         for (let i = 0; i < this.table[index].length; i++) {
             if (this.table[index][i][0] === key) {
-                this.table[index][i][1] === value
+                this.table[index][i][1] = value
                 return
             }
         }
